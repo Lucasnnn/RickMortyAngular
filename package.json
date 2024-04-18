@@ -1,5 +1,5 @@
 {
-  "name": "garage",
+  "name": "rick-morty-lucasnnn",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -15,7 +15,7 @@
     "@angular/compiler": "^14.2.0",
     "@angular/core": "^14.2.0",
     "@angular/forms": "^14.2.0",
-    "@angular/material": "13.0.0",
+    "@angular/material": "14.0.0",
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",

@@ -1,7 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  catchError,
+  debounce,
+  debounceTime,
+  filter,
+  of,
+  switchMap,
+} from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { debounceTime, map } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { CharacterService } from 'src/app/core/services/character.service';
+import { Character } from 'src/app/shared/models/character.type';
 
 @Component({
   selector: 'app-home',
@@ -11,17 +19,43 @@ import { CharacterService } from 'src/app/core/services/character.service';
 export class HomeComponent implements OnInit {
   constructor(private _character: CharacterService) {}
 
-  inputSearch = new FormControl();
+  characters: Character[];
+
+  inputSearch = new FormControl('');
 
   ngOnInit(): void {
     this._character.characters$.subscribe((characters) => {
       console.log(characters);
+
+      this.characters = characters;
     });
 
-    this.inputSearch.valueChanges.pipe(debounceTime(500)).subscribe((value) => {
-      if (value) {
-        this._character.filterCharacters(value).subscribe();
-      }
+    this.searchSubscribe();
+  }
+
+  searchSubscribe() {
+    this.inputSearch.valueChanges
+      .pipe(
+        debounceTime(500),
+        filter((value) => value !== null),
+        switchMap((value) => {
+          if (value) {
+            return this._character
+              .filterCharacters(value)
+              .pipe(this.resetError());
+          } else {
+            return this._character.getAllCharacters().pipe(this.resetError());
+          }
+        })
+      )
+      .subscribe();
+  }
+
+  resetError() {
+    return catchError(() => {
+      this._character.characters = [];
+
+      return of([]);
     });
   }
 }

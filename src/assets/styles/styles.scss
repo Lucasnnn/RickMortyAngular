@@ -17,6 +17,7 @@ $black: rgba(10, 10, 10, 1);
 $secondary: rgba(61, 61, 61, 1);
 
 @import "bootstrap";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 :root {
   --bs-body-bg: transparent !important;

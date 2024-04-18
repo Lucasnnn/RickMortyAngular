@@ -5,9 +5,16 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { EmptyListComponent } from './empty-list/empty-list.component';
 import { ListHeaderComponent } from './list-header/list-header.component';
+import { CharacterListComponent } from './character-list/character-list.component';
+import { CharacterCardComponent } from './character-card/character-card.component';
 
 @NgModule({
-  declarations: [EmptyListComponent, ListHeaderComponent],
+  declarations: [
+    EmptyListComponent,
+    ListHeaderComponent,
+    CharacterListComponent,
+    CharacterCardComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -15,6 +22,6 @@ import { ListHeaderComponent } from './list-header/list-header.component';
     MatButtonToggleModule,
     MatIconModule,
   ],
-  exports: [EmptyListComponent, ListHeaderComponent],
+  exports: [EmptyListComponent, ListHeaderComponent, CharacterListComponent],
 })
 export class ComponentsModule {}

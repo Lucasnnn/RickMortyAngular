@@ -5,12 +5,18 @@
     style="max-width: 520px !important"
   >
     <mat-label>Pesquisar</mat-label>
-    <input matInput />
+    <input matInput [formControl]="inputSearch" />
   </mat-form-field>
 </app-list-header>
 
-<app-empty-list
-  title="Nada foi encontrado"
-  subTitle="Tente realizar uma nova busca."
->
-</app-empty-list>
+<section *ngIf="characters?.length; else empty">
+  <app-character-list [characters]="characters"> </app-character-list>
+</section>
+
+<ng-template #empty>
+  <app-empty-list
+    title="Nada foi encontrado"
+    subTitle="Tente realizar uma nova busca."
+  >
+  </app-empty-list>
+</ng-template>
