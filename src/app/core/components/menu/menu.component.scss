@@ -1,0 +1,18 @@
+mat-button-toggle-group {
+  .mat-button-toggle:not(.mat-button-toggle-checked) {
+    background-color: transparent !important;
+
+    *:not(.count) {
+      color: rgba(164, 164, 164, 1) !important;
+    }
+  }
+
+  .mat-button-toggle-checked {
+    background-color: white !important;
+  }
+
+  #mat-button-toggle-2 {
+    border-left: solid 2px
+      rgba(var(--bs-secondary-rgb), var(--bs-border-opacity)) !important;
+  }
+}

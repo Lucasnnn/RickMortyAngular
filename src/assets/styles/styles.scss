@@ -1,0 +1,45 @@
+//  reset paddings and margins
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #1f1f1f;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+//  custom theme default bootstrap
+$black: rgba(10, 10, 10, 1);
+$secondary: rgba(61, 61, 61, 1);
+
+@import "bootstrap";
+
+:root {
+  --bs-body-bg: transparent !important;
+
+  .btn {
+    --bs-btn-border-radius: 1rem !important;
+  }
+}
+
+//  others custom css class
+
+.header {
+  height: 9.09vh !important;
+  min-height: 64px !important;
+}
+
+.creepTitle {
+  color: #b2df28;
+  color: #00b5cc;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 4rem !important;
+  font-family: "Creepster", system-ui;
+  text-shadow: -2px -2px 0 #b2df28, 2px -2px 0 #b2df28, -2px 2px 0 #b2df28,
+    2px 2px 0 #b2df28; /* Contorno */
+}

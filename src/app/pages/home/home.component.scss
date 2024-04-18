@@ -1,0 +1,35 @@
+#searchHome {
+  ::ng-deep .mat-form-field-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-form-field-infix {
+    border-top-width: 10px !important;
+  }
+
+  ::ng-deep .mat-form-field-flex {
+    padding: 0 !important;
+  }
+
+  ::ng-deep .mat-form-field-appearance-outline {
+    border-radius: 1rem !important;
+    border: solid 1px #5d5d5d !important;
+  }
+
+  ::ng-deep .mat-form-field-label > mat-label {
+    font-size: large;
+    font-weight: 500;
+    color: white !important;
+    padding: 0.8rem !important;
+    background-color: #1f1f1f !important;
+  }
+
+  ::ng-deep .mat-form-field-flex {
+    color: white !important;
+  }
+}

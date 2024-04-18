@@ -1,0 +1,22 @@
+<mat-button-toggle-group
+  [formControl]="selected"
+  class="rounded-4 border-1 border-secondary"
+>
+  <mat-button-toggle class="px-2" value="home">
+    <mat-icon>home</mat-icon>
+
+    <span class="mx-2"> Início </span>
+  </mat-button-toggle>
+
+  <mat-button-toggle class="px-2" value="favorites">
+    <mat-icon>favorite</mat-icon>
+
+    <span class="mx-2"> Favoritos </span>
+
+    <span
+      class="count border border-secondary rounded-circle px-2 py-1 text-dark bg-white fw-bold"
+    >
+      2
+    </span>
+  </mat-button-toggle>
+</mat-button-toggle-group>
