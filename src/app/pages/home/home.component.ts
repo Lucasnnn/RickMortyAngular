@@ -1,7 +1,3 @@
-import { FormControl } from '@angular/forms';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Character } from 'src/app/shared/models/character.type';
-import { CharacterService } from 'src/app/core/services/character.service';
 import {
   catchError,
   debounceTime,
@@ -12,6 +8,10 @@ import {
   switchMap,
   takeUntil,
 } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Character } from 'src/app/shared/models/character.type';
+import { CharacterService } from 'src/app/core/services/character.service';
 
 @Component({
   selector: 'app-home',
@@ -24,10 +24,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private unsubscribe$ = new Subject<void>();
 
-  constructor(private _character: CharacterService) {}
+  constructor(private _charService: CharacterService) {}
 
   ngOnInit(): void {
-    this._character.characters$
+    this._charService.characters$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((characters) => {
         this.characters = characters;
@@ -43,11 +43,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         filter((value: string) => value !== null),
         switchMap((value) => {
           if (value) {
-            return this._character
+            return this._charService
               .filterCharacters(value)
               .pipe(this.resetError());
           } else {
-            return this._character.getAllCharacters().pipe(this.resetError());
+            return this._charService.getAllCharacters().pipe(this.resetError());
           }
         })
       )
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   resetError(): OperatorFunction<unknown, unknown> {
     return catchError(() => {
-      this._character.characters = [];
+      this._charService.characters = [];
 
       return of([]);
     });
