@@ -18,8 +18,8 @@ import { CoreModule } from './core/core.module';
     ComponentsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    CoreModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

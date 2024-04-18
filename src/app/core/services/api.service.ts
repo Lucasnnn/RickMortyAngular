@@ -12,8 +12,8 @@ import { environment } from 'src/environments/environment';
 export class ApiHttpClient {
   private url: string = environment.baseUrl;
 
-  constructor(private http: HttpClient, @Inject(String) url: string) {
-    this.url = this.url + url;
+  constructor(private http: HttpClient, @Inject(String) sufix: string) {
+    this.url = this.url + sufix;
   }
 
   get<T>(url?: string): Observable<T> {

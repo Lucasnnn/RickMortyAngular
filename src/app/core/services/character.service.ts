@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ApiHttpClient } from './api.service';
 import { HttpClient } from '@angular/common/http';
@@ -13,19 +13,50 @@ export class CharacterService extends ApiHttpClient {
     super(http, 'character');
   }
 
-  getAllCharacters(): Observable<CharacterResponse> {
-    return this.get<CharacterResponse>();
+  private _character: BehaviorSubject<Character | null> =
+    new BehaviorSubject<Character | null>(null);
+
+  get character$() {
+    return this._character.asObservable();
   }
 
-  getSingleCharacter(id: number): Observable<Character> {
-    return this.get<Character>('/' + id);
+  private _characters: BehaviorSubject<Character[]> = new BehaviorSubject<
+    Character[]
+  >([]);
+
+  get characters$() {
+    return this._characters.asObservable();
   }
 
-  getMultipleCharacters(ids: number[]): Observable<Character[]> {
-    return this.get<Character[]>('/' + ids?.join(','));
+  getAllCharacters() {
+    return this.get<CharacterResponse>().pipe(
+      tap((response) => {
+        this._characters.next(response.results || []);
+      })
+    );
   }
 
-  filterCharacters(name: string): Observable<CharacterResponse> {
-    return this.get<CharacterResponse>('/?name' + name?.toLowerCase());
+  getMultipleCharacters(ids: number[]) {
+    return this.get<Character[]>('/' + ids?.join(',')).pipe(
+      tap((response) => {
+        this._characters.next(response || []);
+      })
+    );
+  }
+
+  filterCharacters(name: string) {
+    return this.get<CharacterResponse>('/?name' + name?.toLowerCase()).pipe(
+      tap((response) => {
+        this._characters.next(response.results || []);
+      })
+    );
+  }
+
+  getSingleCharacter(id: number) {
+    return this.get<Character>('/' + id).pipe(
+      tap((response) => {
+        this._character.next(response || null);
+      })
+    );
   }
 }
