@@ -7,6 +7,7 @@ import { EmptyListComponent } from './empty-list/empty-list.component';
 import { ListHeaderComponent } from './list-header/list-header.component';
 import { CharacterListComponent } from './character-list/character-list.component';
 import { CharacterCardComponent } from './character-card/character-card.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CharacterCardComponent } from './character-card/character-card.componen
     FormsModule,
     MatButtonToggleModule,
     MatIconModule,
+    InfiniteScrollModule,
   ],
   exports: [EmptyListComponent, ListHeaderComponent, CharacterListComponent],
 })

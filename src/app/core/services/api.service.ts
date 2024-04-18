@@ -77,13 +77,13 @@ export class ApiHttpClient {
   }
 
   //
-
-  // ===== private methods
-
+  // ===== Private methods
   //
 
-  private getUrl(url?: string) {
-    if (url) {
+  private getUrl(url?: string): string {
+    if (url?.includes(this.url)) {
+      return url;
+    } else if (url) {
       return this.url + url;
     } else {
       return this.url;

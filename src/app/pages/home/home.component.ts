@@ -2,6 +2,8 @@ import {
   catchError,
   debounceTime,
   filter,
+  firstValueFrom,
+  Observable,
   of,
   OperatorFunction,
   Subject,
@@ -12,6 +14,7 @@ import { FormControl } from '@angular/forms';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Character } from 'src/app/shared/models/character.type';
 import { CharacterService } from 'src/app/core/services/character.service';
+import { CharacterResponse } from 'src/app/shared/models/character-response.type';
 
 @Component({
   selector: 'app-home',
@@ -34,6 +37,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
 
     this.searchSubscribe();
+  }
+
+  nextPage(event: any): void {
+    if (event) {
+      firstValueFrom(this._charService.nextPage()).then().catch();
+    }
   }
 
   searchSubscribe(): void {

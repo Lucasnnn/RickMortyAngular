@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiHttpClient } from './api.service';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { Character } from 'src/app/shared/models/character.type';
 import { CharacterResponse } from 'src/app/shared/models/character-response.type';
 
@@ -83,12 +83,12 @@ export class CharacterService extends ApiHttpClient {
 
   nextPage(): Observable<CharacterResponse> {
     if (!this.nextUrl) {
-      return;
+      return of(null);
     }
 
     return this.get<CharacterResponse>(this.nextUrl).pipe(
       tap((response) => {
-        this.setResponse(response);
+        this.setResponse(response, true);
       })
     );
   }
@@ -103,6 +103,31 @@ export class CharacterService extends ApiHttpClient {
     const currentCharacters = this._characters.getValue();
 
     const newCharacters = response.results;
+
+    if (!this.nextUrl) {
+      const last: Character = {
+        id: 0,
+        name: 'FIM DA LISTA',
+        status: 'unknown',
+        species: '',
+        type: '',
+        gender: 'Genderless',
+        origin: {
+          name: '',
+          url: '',
+        },
+        location: {
+          name: '',
+          url: '',
+        },
+        image: '',
+        episode: [],
+        url: '',
+        created: '',
+      };
+
+      newCharacters.push(last);
+    }
 
     this._characters.next(
       preserv ? [...currentCharacters, ...newCharacters] : newCharacters || []

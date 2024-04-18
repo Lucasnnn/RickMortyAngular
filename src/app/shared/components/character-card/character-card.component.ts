@@ -12,7 +12,7 @@ export class CharacterCardComponent {
   default = './assets/images/ico.png';
 
   getImage(character: Character): string {
-    const image = character.image ?? this.default;
+    const image = character.image || this.default;
 
     return image;
   }

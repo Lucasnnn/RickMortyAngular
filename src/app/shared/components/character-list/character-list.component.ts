@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
 import { Character } from '../../models/character.type';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-character-list',
@@ -7,4 +7,10 @@ import { Character } from '../../models/character.type';
 })
 export class CharacterListComponent {
   @Input() characters: Character[];
+
+  @Output() nextPage = new EventEmitter<boolean>();
+
+  onScroll(): void {
+    this.nextPage.emit(true);
+  }
 }
