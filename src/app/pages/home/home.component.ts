@@ -1,43 +1,46 @@
+import { FormControl } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Character } from 'src/app/shared/models/character.type';
+import { CharacterService } from 'src/app/core/services/character.service';
 import {
   catchError,
-  debounce,
   debounceTime,
   filter,
   of,
+  OperatorFunction,
+  Subject,
   switchMap,
+  takeUntil,
 } from 'rxjs';
-import { FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import { CharacterService } from 'src/app/core/services/character.service';
-import { Character } from 'src/app/shared/models/character.type';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
-  constructor(private _character: CharacterService) {}
-
+export class HomeComponent implements OnInit, OnDestroy {
   characters: Character[];
-
   inputSearch = new FormControl('');
 
-  ngOnInit(): void {
-    this._character.characters$.subscribe((characters) => {
-      console.log(characters);
+  private unsubscribe$ = new Subject<void>();
 
-      this.characters = characters;
-    });
+  constructor(private _character: CharacterService) {}
+
+  ngOnInit(): void {
+    this._character.characters$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((characters) => {
+        this.characters = characters;
+      });
 
     this.searchSubscribe();
   }
 
-  searchSubscribe() {
+  searchSubscribe(): void {
     this.inputSearch.valueChanges
       .pipe(
         debounceTime(500),
-        filter((value) => value !== null),
+        filter((value: string) => value !== null),
         switchMap((value) => {
           if (value) {
             return this._character
@@ -51,11 +54,16 @@ export class HomeComponent implements OnInit {
       .subscribe();
   }
 
-  resetError() {
+  resetError(): OperatorFunction<unknown, unknown> {
     return catchError(() => {
       this._character.characters = [];
 
       return of([]);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

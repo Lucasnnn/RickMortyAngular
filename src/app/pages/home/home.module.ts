@@ -5,7 +5,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HomeComponent],

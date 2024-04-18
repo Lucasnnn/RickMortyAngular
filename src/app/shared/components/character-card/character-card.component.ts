@@ -9,7 +9,11 @@ import { Character } from '../../models/character.type';
 export class CharacterCardComponent {
   @Input() character: Character;
 
-  getImage(character: Character) {
-    return character.image;
+  default = './assets/images/ico.png';
+
+  getImage(character: Character): string {
+    const image = character.image ?? this.default;
+
+    return image;
   }
 }
