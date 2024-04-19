@@ -1,19 +1,21 @@
-# Garage
+<p>
+  Aplicação de consulta, visualização e cadastro de personagens favoritos do seriado Rick & Morty.
+</p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
+## API
 
-## Development server
+Aplicação utilizou a API pública [rickandmortyapi](https://rickandmortyapi.com/documentation/#introduction) para o consumo das requisições dos personagens via REST.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## TECNOLOGIAS
 
-## Code scaffolding
+Tecnologias utilizadas:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Angular 16+**
+- **Typescript**
+- **RxJs**
+- **Angular Material**
+- **Bootstrap**
 
-## Build
+## DEPLOY
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+URL para acesso do deploy:

@@ -1,14 +1,32 @@
-<mat-button-toggle-group class="rounded-4 border-1 border-secondary">
+<mat-button-toggle-group
+  class="rounded-4 border-1 border-secondary me-2 me-sm-4"
+>
+  <!-- menu home all screen -->
   <mat-button-toggle
     [routerLink]="'home'"
     routerLinkActive="mat-button-toggle-checked"
   >
-    <mat-icon>home</mat-icon>
+    <mat-icon class="scaleIcon">home</mat-icon>
 
-    <span class="mx-2"> Início </span>
+    <span class="mx-2 smHidden"> Início </span>
   </mat-button-toggle>
 
+  <!-- menu favorite small screen -->
   <mat-button-toggle
+    class="mdHidden"
+    [routerLink]="'favorites'"
+    routerLinkActive="mat-button-toggle-checked"
+  >
+    <mat-icon class="scaleIcon">favorite</mat-icon>
+
+    <span class="count fw-bold">
+      {{ idsLength$ | async }}
+    </span>
+  </mat-button-toggle>
+
+  <!-- menu favorite large screen -->
+  <mat-button-toggle
+    class="smHidden"
     [routerLink]="'favorites'"
     routerLinkActive="mat-button-toggle-checked"
   >
