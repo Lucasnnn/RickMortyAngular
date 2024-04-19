@@ -1,14 +1,17 @@
-<mat-button-toggle-group
-  [formControl]="selected"
-  class="rounded-4 border-1 border-secondary"
->
-  <mat-button-toggle class="px-2" value="home">
+<mat-button-toggle-group class="rounded-4 border-1 border-secondary">
+  <mat-button-toggle
+    [routerLink]="'home'"
+    routerLinkActive="mat-button-toggle-checked"
+  >
     <mat-icon>home</mat-icon>
 
     <span class="mx-2"> Início </span>
   </mat-button-toggle>
 
-  <mat-button-toggle class="px-2" value="favorites">
+  <mat-button-toggle
+    [routerLink]="'favorites'"
+    routerLinkActive="mat-button-toggle-checked"
+  >
     <mat-icon>favorite</mat-icon>
 
     <span class="mx-2"> Favoritos </span>
