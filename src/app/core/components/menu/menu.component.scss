@@ -9,6 +9,11 @@ mat-button-toggle-group {
 
   .mat-button-toggle-checked {
     background-color: white !important;
+
+    .count {
+      color: white !important;
+      background-color: black !important;
+    }
   }
 
   #mat-button-toggle-2 {
