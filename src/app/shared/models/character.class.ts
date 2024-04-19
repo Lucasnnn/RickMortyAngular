@@ -1,6 +1,6 @@
 import { Origin } from './origin.type';
 
-export interface Character {
+export class Character {
   id: number;
   url: string;
   name: string;

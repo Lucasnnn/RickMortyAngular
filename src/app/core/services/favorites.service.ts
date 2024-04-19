@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, lastValueFrom, Observable } from 'rxjs';
 import { StorageService } from './storage.service';
-import { Character } from 'src/app/shared/models/character.type';
 import { CharacterService } from './character.service';
+import { Character } from 'src/app/shared/models/character.class';
 
 @Injectable({
   providedIn: 'root',

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ApiHttpClient } from './api.service';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of, tap } from 'rxjs';
-import { Character } from 'src/app/shared/models/character.type';
+import { BehaviorSubject, map, Observable, of, tap } from 'rxjs';
 import { CharacterResponse } from 'src/app/shared/models/character-response.type';
+import { Character } from 'src/app/shared/models/character.class';
 
 @Injectable({
   providedIn: 'root',
@@ -50,9 +50,26 @@ export class CharacterService extends ApiHttpClient {
   //
 
   getMultipleCharacters(ids: number[]): Observable<Character[]> {
-    return this.get<Character[]>('/' + ids?.join(',')).pipe(
-      tap((response) => {
-        this._characters.next(response || []);
+    return this.get<Character[] | Character>('/' + ids?.join(',')).pipe(
+      map((response) => {
+        let characters: Character[];
+
+        if (!Array.isArray(response) && response?.id) {
+          characters = [response];
+        } else if (
+          Array.isArray(response) &&
+          response.every((item) => item instanceof Character)
+        ) {
+          characters = response;
+        } else {
+          throw new Error(
+            'A resposta não é uma matriz de Character[] | Character'
+          );
+        }
+
+        this._characters.next(characters);
+
+        return characters;
       })
     );
   }

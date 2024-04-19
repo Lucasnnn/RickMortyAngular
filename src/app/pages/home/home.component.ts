@@ -10,8 +10,8 @@ import {
 } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Character } from 'src/app/shared/models/character.type';
 import { CharacterService } from 'src/app/core/services/character.service';
+import { Character } from 'src/app/shared/models/character.class';
 
 @Component({
   selector: 'app-home',

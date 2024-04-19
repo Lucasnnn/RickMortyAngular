@@ -1,7 +1,7 @@
 import { Observable, takeUntil } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FavoritesService } from 'src/app/core/services/favorites.service';
-import { Character } from 'src/app/shared/models/character.type';
+import { Character } from 'src/app/shared/models/character.class';
 
 @Component({
   selector: 'app-favorites',

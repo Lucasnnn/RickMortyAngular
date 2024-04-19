@@ -46,7 +46,7 @@ $secondary: rgba(61, 61, 61, 1);
 }
 
 @mixin icon-size($size) {
-  $scale: $size / 2;
+  $scale: calc($size / 2);
   transform: scale($scale);
 }
 

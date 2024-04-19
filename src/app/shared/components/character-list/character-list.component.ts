@@ -1,4 +1,4 @@
-import { Character } from '../../models/character.type';
+import { Character } from '../../models/character.class';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
