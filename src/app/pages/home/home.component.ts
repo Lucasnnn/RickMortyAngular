@@ -3,14 +3,13 @@ import {
   debounceTime,
   filter,
   firstValueFrom,
+  Observable,
   of,
   OperatorFunction,
-  Subject,
   switchMap,
-  takeUntil,
 } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Character } from 'src/app/shared/models/character.type';
 import { CharacterService } from 'src/app/core/services/character.service';
 
@@ -19,20 +18,14 @@ import { CharacterService } from 'src/app/core/services/character.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  characters: Character[];
+export class HomeComponent implements OnInit {
   inputSearch = new FormControl('');
-
-  private unsubscribe$ = new Subject<void>();
+  characters$: Observable<Character[]>;
 
   constructor(private _charService: CharacterService) {}
 
   ngOnInit(): void {
-    this._charService.characters$
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((characters) => {
-        this.characters = characters;
-      });
+    this.characters$ = this._charService.characters$;
 
     this.searchSubscribe();
   }
@@ -67,10 +60,5 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       return of([]);
     });
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 }

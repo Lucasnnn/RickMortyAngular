@@ -1,12 +1,5 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
 import { FavoritesService } from 'src/app/core/services/favorites.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-favorite-button',

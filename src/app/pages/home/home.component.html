@@ -9,14 +9,16 @@
   </mat-form-field>
 </app-list-header>
 
-<section *ngIf="characters?.length; else empty">
-  <app-character-list
-    [characters]="characters"
-    (nextPage)="nextPage($event)"
-    class="d-flex flex-column w-100 align-items-center"
-  >
-  </app-character-list>
-</section>
+<ng-container *ngIf="characters$ | async as characters">
+  <section *ngIf="characters?.length; else empty">
+    <app-character-list
+      [characters]="characters"
+      (nextPage)="nextPage($event)"
+      class="d-flex flex-column w-100 align-items-center"
+    >
+    </app-character-list>
+  </section>
+</ng-container>
 
 <ng-template #empty>
   <app-empty-list

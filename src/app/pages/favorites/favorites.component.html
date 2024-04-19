@@ -1,12 +1,14 @@
 <app-list-header title="Favoritos"> </app-list-header>
 
-<section *ngIf="favorites?.length; else empty">
-  <app-character-list
-    [characters]="favorites"
-    class="d-flex flex-column w-100 align-items-center"
-  >
-  </app-character-list>
-</section>
+<ng-container *ngIf="favorites$ | async as favorites">
+  <section *ngIf="favorites?.length; else empty">
+    <app-character-list
+      [characters]="favorites"
+      class="d-flex flex-column w-100 align-items-center"
+    >
+    </app-character-list>
+  </section>
+</ng-container>
 
 <ng-template #empty>
   <app-empty-list
