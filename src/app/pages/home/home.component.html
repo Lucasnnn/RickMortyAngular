@@ -1,16 +1,29 @@
 <app-list-header id="searchHome" title="Início">
   <mat-form-field
+    class="w-100"
     appearance="outline"
-    class="col align-self-center"
     style="max-width: 520px !important"
   >
     <mat-label>Pesquisar</mat-label>
-    <input matInput />
+    <input matInput [formControl]="inputSearch" />
   </mat-form-field>
 </app-list-header>
 
-<app-empty-list
-  title="Nada foi encontrado"
-  subTitle="Tente realizar uma nova busca."
->
-</app-empty-list>
+<ng-container *ngIf="characters$ | async as characters">
+  <section *ngIf="characters?.length; else empty">
+    <app-character-list
+      [characters]="characters"
+      (nextPage)="nextPage($event)"
+      class="d-flex flex-column w-100 align-items-center"
+    >
+    </app-character-list>
+  </section>
+</ng-container>
+
+<ng-template #empty>
+  <app-empty-list
+    title="Nada foi encontrado"
+    subTitle="Tente realizar uma nova busca."
+  >
+  </app-empty-list>
+</ng-template>

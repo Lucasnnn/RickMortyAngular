@@ -1,14 +1,26 @@
 <app-list-header title="Favoritos"> </app-list-header>
 
-<app-empty-list
-  title="Parece que você ainda não tem favoritos"
-  subTitle="Volte à página inicial e escolha os melhores para você."
->
-  <button
-    type="button"
-    routerLink="home"
-    class="btn btn-lg btn-light mt-4 border-5"
+<ng-container *ngIf="favorites$ | async as favorites">
+  <section *ngIf="favorites?.length; else empty">
+    <app-character-list
+      [characters]="favorites"
+      class="d-flex flex-column w-100 align-items-center"
+    >
+    </app-character-list>
+  </section>
+</ng-container>
+
+<ng-template #empty>
+  <app-empty-list
+    title="Parece que você ainda não tem favoritos"
+    subTitle="Volte à página inicial e escolha os melhores para você."
   >
-    <span> Voltar ao início </span>
-  </button>
-</app-empty-list>
+    <button
+      type="button"
+      routerLink="home"
+      class="btn btn-lg btn-light mt-4 border-5"
+    >
+      <span> Voltar ao início </span>
+    </button>
+  </app-empty-list>
+</ng-template>

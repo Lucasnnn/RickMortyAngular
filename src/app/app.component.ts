@@ -1,17 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit {
-  constructor(private route: Router) {}
-
-  ngOnInit(): void {
-    const x = window.localStorage.getItem('taokeyn?');
-    if (x) {
-      this.route.navigate(['/listagem']);
-    }
-  }
-}
+export class AppComponent {}

@@ -1,0 +1,27 @@
+<div class="card">
+  <img [src]="getImage(character)" class="card-img-top" />
+
+  <section
+    class="circleBackGround"
+    [ngClass]="{ 'fav-select': favorite }"
+  ></section>
+
+  <app-favorite-button
+    [id]="character.id"
+    (favorited)="favorited($event)"
+    class="position-absolute end-0 mt-1 me-1"
+  >
+  </app-favorite-button>
+
+  <div class="card-body">
+    <h5>{{ character.name }}</h5>
+
+    <p>
+      {{ character.species }}
+    </p>
+
+    <p>
+      {{ character.type }}
+    </p>
+  </div>
+</div>

@@ -17,6 +17,7 @@ $black: rgba(10, 10, 10, 1);
 $secondary: rgba(61, 61, 61, 1);
 
 @import "bootstrap";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 :root {
   --bs-body-bg: transparent !important;
@@ -42,4 +43,15 @@ $secondary: rgba(61, 61, 61, 1);
   font-family: "Creepster", system-ui;
   text-shadow: -2px -2px 0 #b2df28, 2px -2px 0 #b2df28, -2px 2px 0 #b2df28,
     2px 2px 0 #b2df28; /* Contorno */
+}
+
+@mixin icon-size($size) {
+  $scale: $size / 2;
+  transform: scale($scale);
+}
+
+@for $i from 1 through 12 {
+  .icon-size-#{$i} {
+    @include icon-size($i);
+  }
 }

@@ -1,0 +1,14 @@
+<section
+  infiniteScroll
+  class="search-results"
+  (scrolled)="onScroll()"
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="500"
+  class="w-100 h-100 row row-cols-1 row-cols-sm-2 row-cols-md-3 pb-5"
+>
+  <app-character-card
+    class="mt-4"
+    [character]="character"
+    *ngFor="let character of characters"
+  ></app-character-card>
+</section>

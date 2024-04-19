@@ -1,14 +1,35 @@
 <mat-button-toggle-group
-  [formControl]="selected"
-  class="rounded-4 border-1 border-secondary"
+  class="rounded-4 border-1 border-secondary me-2 me-sm-4"
 >
-  <mat-button-toggle class="px-2" value="home">
-    <mat-icon>home</mat-icon>
+  <!-- menu home all screen -->
+  <mat-button-toggle
+    [routerLink]="'home'"
+    routerLinkActive="mat-button-toggle-checked"
+  >
+    <mat-icon class="scaleIcon">home</mat-icon>
 
-    <span class="mx-2"> Início </span>
+    <span class="mx-2 smHidden"> Início </span>
   </mat-button-toggle>
 
-  <mat-button-toggle class="px-2" value="favorites">
+  <!-- menu favorite small screen -->
+  <mat-button-toggle
+    class="mdHidden"
+    [routerLink]="'favorites'"
+    routerLinkActive="mat-button-toggle-checked"
+  >
+    <mat-icon class="scaleIcon">favorite</mat-icon>
+
+    <span class="count fw-bold">
+      {{ idsLength$ | async }}
+    </span>
+  </mat-button-toggle>
+
+  <!-- menu favorite large screen -->
+  <mat-button-toggle
+    class="smHidden"
+    [routerLink]="'favorites'"
+    routerLinkActive="mat-button-toggle-checked"
+  >
     <mat-icon>favorite</mat-icon>
 
     <span class="mx-2"> Favoritos </span>
@@ -16,7 +37,7 @@
     <span
       class="count border border-secondary rounded-circle px-2 py-1 text-dark bg-white fw-bold"
     >
-      2
+      {{ idsLength$ | async }}
     </span>
   </mat-button-toggle>
 </mat-button-toggle-group>
