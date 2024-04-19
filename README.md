@@ -15,6 +15,8 @@ Tecnologias utilizadas:
 - **RxJs**
 - **Angular Material**
 - **Bootstrap**
+- **Responsividade**
+- **DB index browser**
 
 ## DEPLOY
 
