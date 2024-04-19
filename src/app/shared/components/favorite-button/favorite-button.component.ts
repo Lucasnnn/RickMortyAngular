@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FavoritesService } from 'src/app/core/services/favorites.service';
 
 @Component({
@@ -16,10 +23,12 @@ export class FavoriteButtonComponent implements OnInit {
 
   ngOnInit(): void {
     this._favService.ids$.subscribe((ids) => {
-      this.favorite = ids.includes(this.id);
-    });
+      setTimeout(() => {
+        this.favorite = ids.includes(this.id);
 
-    this.favorited.emit(this.favorite);
+        this.favorited.emit(this.favorite);
+      });
+    });
   }
 
   toggle(): void {
