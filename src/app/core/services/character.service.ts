@@ -58,7 +58,7 @@ export class CharacterService extends ApiHttpClient {
           characters = [response];
         } else if (
           Array.isArray(response) &&
-          response.every((item) => item instanceof Character)
+          response?.every((item) => item?.id >= 0)
         ) {
           characters = response;
         } else {
