@@ -24,7 +24,7 @@ export class StorageService {
     });
   }
 
-  async get(key: string): Promise<any> {
+  async get<T>(key: string): Promise<T> {
     const value = await Filesystem.readFile({
       path: key,
       directory: Directory.Library,

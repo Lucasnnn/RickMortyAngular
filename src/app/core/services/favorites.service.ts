@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, lastValueFrom, Observable } from 'rxjs';
 import { StorageService } from './storage.service';
 import { Character } from 'src/app/shared/models/character.type';
+import { CharacterService } from './character.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,10 @@ export class FavoritesService {
   >([]);
   private _ids: BehaviorSubject<number[]> = new BehaviorSubject<number[]>([]);
 
-  constructor(private _storage: StorageService) {}
+  constructor(
+    private _storage: StorageService,
+    private _charService: CharacterService
+  ) {}
 
   //
   // ==== Getters Setters
@@ -62,10 +66,20 @@ export class FavoritesService {
     await this.saveFavorites(newIds);
   }
 
-  async getFavoriteIds(): Promise<void> {
-    const ids = await this._storage.get('favorites');
+  async getFavoritesIds(): Promise<void> {
+    const ids = await this._storage.get<number[]>('favorites');
 
     this._ids.next(ids);
+  }
+
+  async getAllFavorites(): Promise<void> {
+    const ids = await this._storage.get<number[]>('favorites');
+
+    const favorites = await lastValueFrom(
+      this._charService.getMultipleCharacters(ids)
+    );
+
+    this._favorites.next(favorites);
   }
 
   //
