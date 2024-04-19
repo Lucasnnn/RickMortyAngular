@@ -21,3 +21,5 @@ Tecnologias utilizadas:
 ## DEPLOY
 
 URL para acesso do deploy:
+
+https://rickymortylucasnnn.web.app/
