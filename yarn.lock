@@ -1338,6 +1338,13 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
+"@capacitor/core@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@capacitor/core/-/core-6.0.0.tgz#abfaf1013cec686cf9743cf4fdc445d10e2f13ea"
+  integrity sha512-NvxIQsJcMiIV+Le1DilR2GGyQQbDInfXK1UywGROQ5mycdFlW5XoAPZ+MKnFGB123RoEgE3uhDGgwTXUmSlX9A==
+  dependencies:
+    tslib "^2.1.0"
+
 "@capacitor/filesystem@^6.0.0":
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@capacitor/filesystem/-/filesystem-6.0.0.tgz#d02778ed920a25559c60b0940c058cc6732feb14"

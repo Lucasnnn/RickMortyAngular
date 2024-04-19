@@ -46,7 +46,7 @@ export class CharacterService extends ApiHttpClient {
   }
 
   //
-  // ==== Requests
+  // ==== Methods
   //
 
   getMultipleCharacters(ids: number[]): Observable<Character[]> {

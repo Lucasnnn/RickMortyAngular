@@ -30,7 +30,7 @@ export class StorageService {
       directory: Directory.Library,
     });
 
-    const base64String = value.data;
+    const base64String = value.data as string;
 
     const jsonString = atob(base64String);
 

@@ -1,9 +1,9 @@
 .card {
+  height: 100%;
   --bs-card-border-radius: 1.2rem !important;
   --bs-card-inner-border-radius: 1.2rem !important;
   --bs-card-bg: rgba(10, 10, 10, 1) !important;
   --bs-card-border-color: rgba(61, 61, 61, 1) !important;
-  height: 100%;
 
   h5 {
     color: white;
@@ -25,4 +25,22 @@
     text-align: left;
     color: var(--color-core-content-low, rgba(164, 164, 164, 1));
   }
+}
+
+.circleBackGround {
+  right: 0;
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  border-left: none;
+  position: absolute;
+  border-radius: 100%;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 1.2rem;
+  background-color: rgba(0, 0, 0, 0.295);
+}
+
+.favorited {
+  background-color: rgba(255, 255, 255, 1);
 }
