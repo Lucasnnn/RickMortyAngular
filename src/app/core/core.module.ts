@@ -8,6 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MenuComponent } from './components/menu/menu.component';
 import { MenuMobileComponent } from './components/menu-mobile/menu-mobile.component';
+import { ScrollTopComponent } from './components/scroll-top/scroll-top.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,7 @@ import { MenuMobileComponent } from './components/menu-mobile/menu-mobile.compon
     LayoutComponent,
     MenuComponent,
     MenuMobileComponent,
+    ScrollTopComponent,
   ],
   imports: [
     MatButtonToggleModule,
@@ -22,6 +25,7 @@ import { MenuMobileComponent } from './components/menu-mobile/menu-mobile.compon
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
+    MatButtonModule,
   ],
 })
 export class CoreModule {
